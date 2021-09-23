@@ -29,8 +29,6 @@ soup.prettify()
 
 data = {"bins": []}
 
-types = []
-
 for bins in soup.findAll("div", {"class": "widget-content waste-panel"}):
 
     binCollection = bins.find_all('li')
@@ -44,9 +42,8 @@ for bins in soup.findAll("div", {"class": "widget-content waste-panel"}):
                 }
 
                 # this code ensures that there are no duplicate entries into the data["bins"] dictionary
-                if bin.find("strong").contents[0] not in types:
+                if bin.find("strong").contents[0] not in data:
                     data["bins"].append(dict_data)
-                    types.append(bin.find("strong").contents[0])
 
     else:
         # this prints an error message so you know if anything is wrong with the program
